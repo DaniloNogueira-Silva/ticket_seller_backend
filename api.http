@@ -34,3 +34,34 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/events/{{eventId}}
+
+
+
+### 
+
+GET http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots
+
+###
+
+POST http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots
+Content-Type: application/json
+
+{
+    "name": "A1"
+}
+
+###
+GET http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots/c6f9d0c1-fc83-4552-8d25-5a3050ca9855
+
+
+###
+PATCH  http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots/c6f9d0c1-fc83-4552-8d25-5a3050ca9855
+Content-Type: application/json
+
+{
+    "name": "A2"
+}
+
+
+###
+DELETE http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots/c6f9d0c1-fc83-4552-8d25-5a3050ca9855
