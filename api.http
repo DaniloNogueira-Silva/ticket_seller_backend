@@ -35,7 +35,16 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/events/{{eventId}}
 
+###
 
+POST http://localhost:3000/events/{{eventId}}/reserve
+Content-Type: application/json
+
+{
+    "spots": ["A1"],
+    "ticket_kind": "full",
+    "email": "teste@gmail.com"
+}
 
 ### 
 
@@ -43,7 +52,7 @@ GET http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots
 
 ###
 
-POST http://localhost:3000/events/76976026-475e-456c-a4c3-e0d558da3497/spots
+POST http://localhost:3000/events/c822cd1d-13d9-4224-9a58-630c1df48afa/spots
 Content-Type: application/json
 
 {

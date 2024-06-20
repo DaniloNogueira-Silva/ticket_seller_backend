@@ -15,20 +15,55 @@ model Event {
   price       Float
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  Spost       Spot[]
+  Spot        Spot[]
 }
 
 model Spot {
-  id        String     @id @default(uuid())
-  name      String
-  status    SpotStatus
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  eventId   String
-  Event     Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  id                 String               @id @default(uuid())
+  name               String
+  status             SpotStatus
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  eventId            String
+  Event              Event                @relation(fields: [eventId], references: [id])
+  Ticket             Ticket?
+  ReservationHistory ReservationHistory[]
 }
 
 enum SpotStatus {
   available
-  reserverd
+  reserved
+}
+
+model Ticket {
+  id         String     @id @default(uuid())
+  email      String
+  ticketKind TicketKind
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  spotId     String
+  Spot       Spot       @relation(fields: [spotId], references: [id])
+
+  @@unique([spotId])
+}
+
+enum TicketKind {
+  full
+  half
+}
+
+enum TicketStatus {
+  reserved
+  canceled
+}
+
+model ReservationHistory {
+  id         String       @id @default(uuid())
+  email      String
+  ticketKind TicketKind
+  status     TicketStatus
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  spotId     String
+  Spot       Spot         @relation(fields: [spotId], references: [id])
 }
